@@ -1,73 +1,85 @@
-# Stabilization Meeting started on 2019-07-23 07:00:00 -0700 PDT
+# Stabilization Meeting started on 2019-07-30 07:03:00 -0700 PDT
 
 ## Attendance
-- David Bainbridge
-- zdw
-- Kent Hagerman
-- Scott Baker
-- Andy Bavier
-- kailashkhalasi
-- Girish GC
-- khenaidoo Nursimulu
-- Kyryll Sheychenko
-- Shaun Missett (Radisys)
-- aghosh
-- teone
 - Aishwarya Rana
+- Chip Boling
+- David Bainbridge
 - Gilles Depatie
-- Marcelo
-- jzhang
-- George Munteanu (Furukawa)
-- sauravdas
+- Julie Lorentzen
+- Kent Hagerman
+- Kyryll Sheychenko
+- Matt Jeanneret
+- Scott Baker
+- aghosh
+- kailashkhalasi
+- khenaidoo Nursimulu
+- teone
+- zdw
 
-## Topic: intro (2m55s)
-- time conflict SEBA tiger team meeting, Saurav recommend that SEBA meeting gets resceduled
+## Topic: Agenda bashing (42s)
 
-## Topic: agenda bashing (12s)
-- no changes
-
-## Topic: Goal and Scope (24m31s)
-- brigade will focus on VOLTHA only, but as VOLTHA is not standalone ONOS apps required will have to be included
-- NEM layer makes activate subscriber call, this will have to be a manual step without SEBA/NEM
-- Matt proposed a plan to come up with a couple of stable releases and a plan to introduce new features and maintain stability.
-- the final user of VOLTHA is the operator and thus the result has to meet their expectations.
-- need a way for new features to be introduced while maintaining stability.
-- reviews raised for tech profiles for v 2.x
-- MVP from previous meeting really features for stability release
-- the list of stability features from previous meetings needs more clarification, example for HA
-- plan would be to settle on minimal feature set to stabilize and then come up with a viable way to introduce new features.
-- include numbers of OLT/ONUs as well as what adapters and end devices
-- action item should include how VOLTHA is going to be tested as well as what is going to be tested.
-- suggested that each release of VOLTHA should include a test suite
-
-### Actions
-- dbainbri(7/30): clarify minimal set of feature for stabilization
-
-## Topic: Branch and release strategy (30m40s)
-- strategy is similar to what is being used in SEBA, individual component and brought together into a solution.
-- meant to be suitable for stabilization as well as on going releases and feature introduction
-- doesn’t address lifecycle issues such as how many releases to support.
-- suggestion is to develop fix on master when possible and then move it to the stabile release branch
-- changes that go into helm charts are atomic across the solution
-- do we have a HEAD test cases that will run against the latest of everything, but it may fail at times
-- the helm chart needs to be up versioned when any of the components it uses has a new tag
-- when a feature is submitted, end to end testing is submitted as well.
-
-### Actions
-- zdw(7/30): update document to include example of cross repo patchset update
+## Topic: action item review (15m9s)
+- features list in spreadsheet
+- sheet that covers components of voltha
+- should some components be in their own repo
+- when do we deprecated python adapter and remove it to its own repository.
+- 1.6 doesn’t depend on the containerized adapters
+- @zdw updated his branching document to cover multiple project updates
 
 ### Decisions
-- will use patchiest and not feature branches
-- sanity tests are single repo focused
-- cross repo tests are when helm chart version is bumped
+- continue to differentiate python and go version of adapter by tag for now
+- change the default tag (master) to reference the go version
+- while it make sense to split some projects into their own repo we will get the code working first, i.e. it is low priority
+
+## Topic: of agent versions (6m19s)
+- version in voltha-go started with 2.x, using GRPC for 2.x
+- had to work with api server which required some logic changes
+- of agent in voltha only works with 1.x grpc
+- features from 1.x version have been mostly ported to 2.x
+- there are additional libraries from 1.x needs to be ported to 2.x (pyvoltha, open omci)
+- can we freeze the 1.x code to prevent the continues need to port form 1.x to 2.x
+
+### Actions
+- @dbainbri(8/6): to talk to someone about 1.x futures
+
+## Topic: branch and freeze (26m32s)
+- master version work today with older version of Onos and not tech profile to get a bbsim one up
+- these patchsets will cause churn as things get settled.
+- also needs to be tested on bbsim and hardware
+- a few more hands to help out on writing unit tests for the golang adapter
+- Existing team will write example tests for the golang adapter and then create tasks that others can take on
+- no ETA for unit test passing at this time, but will be more than a couple of days.
+- there other patches required to be feature complete, such a reconciliation.
+- we can tag and branch repos independently and don’t have to be done all at once.
+
+### Actions
+- all(8/6): please identify all patchsets that are required before branch and freeze
+- all(8/6): forward any JIRAs required for feature to @dbainbri
+
+### Decisions
+- no patchset will be merged unless we can prove that the e2e story works.
+
+## Topic: CI/CD pipeline (1m45s)
+- diagram depicts items that have been under discussion in terms of flow of development and gates to pass before merges
+
+## Topic: post-release support (5m8s)
+- need to make decisions around post-release support
+- how many versions to support (example)
+- may need to be raised to TST level
+- policy should be defined / written about post-release
+- seba has a policy of supporting 1 release behind
+- need to define policy in terms of LTS release
+- Release support needs to be informed by upgrade cycle of service providers.
 
 # All Actions
-- dbainbri(7/30): clarify minimal set of feature for stabilization
-- zdw(7/30): update document to include example of cross repo patchset update
+- @dbainbri(8/6): to talk to someone about 1.x futures
+- all(8/6): please identify all patchsets that are required before branch and freeze
+- all(8/6): forward any JIRAs required for feature to @dbainbri
 
 # All Decisions
-- will use patchiest and not feature branches
-- sanity tests are single repo focused
-- cross repo tests are when helm chart version is bumped
+- continue to differentiate python and go version of adapter by tag for now
+- change the default tag (master) to reference the go version
+- while it make sense to split some projects into their own repo we will get the code working first, i.e. it is low priority
+- no patchset will be merged unless we can prove that the e2e story works.
 
-# Meeting ended at 2019-07-23 08:08:41 -0700 PDT
+# Meeting ended at 2019-07-30 08:04:23 -0700 PDT
