@@ -3,6 +3,7 @@
 ## Attendance
 - Aishwarya Rana
 - Andy Bavier
+- David Bainbridge
 - Gilles Depatie
 - Girish
 - Julie Lorentzen
