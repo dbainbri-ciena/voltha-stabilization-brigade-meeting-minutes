@@ -1,73 +1,89 @@
-# Stabilization Meeting started on 2019-08-13 07:02:00 -0700 PDT
+# Stabilization Meeting started on 2019-08-20 07:02:00 -0700 PDT
 
 ## Attendance
 - Aishwarya Rana
+- Amit
 - Andy Bavier
+- Chip Boling
 - David Bainbridge
+- George Munteanu (Furukawa)
 - Gilles Depatie
-- Girish
 - Julie Lorentzen
+- Kailash
 - Kent Hagerman
+- Khen
 - Kyryll Sheychenko
+- Marcelo
 - Matt Jeanneret
 - Open Networking Foundation
+- Saurav
 - Scott Baker
-- Vikas Arora
-- kailashkhalasi
-- khenaidoo Nursimulu
-- sbarbari
 - taskin_ucpinar
 - teone
 - zdw
 
-## Topic: action item review (50s)
-- Kailash did review the spreadsheet and working on ironing out auth issues to be consistent
+## Topic: Action item review (1m0s)
+- Matt posted docker images with TP patches for testing
 
-## Topic: tech profile status (34m32s)
-- Matt has tested on hardware and had to tweak SADIS settings and ONOS is not adding first EPOL flows
-- Matt has seen success 1 out of 4 times, seems to be a timing issue
-- Matt has patch set out for bbsim, which sees tech profile work with auth and DHCP
-- two main issues, a BAL timing issue and the Onos app AAA patch
-- please test the BBSIM with TP if you can to get multiple people working on it.
-- ONF will try to test V2.x with h/w later this week.
-- do we merge patchiest now before everything is working consistantly.
-- actually working 3 out of 4
-- applying patchiest across repos can be difficult
-- master branch is stalled until the brigade branches
-- Voltha-go, oprenolt, bbsim, and new versions of Onos patches are needed
-- guide with SADIS options https://guide.opencord.org
-- can we formalize what has been tested and against what
-- automated testing is the correct direction, but we are not there yet.
-- TT will test against hardware once the patched images are pushed to docker hub
-- edge core will be testing on hardware
-- edgecore will work with the community and DT and set up test labs, createa a CI/CD environment, and continuously test the branch(es) 
-- repo will be tagged before TP patchset it merged
+## Topic: tech profile status (8m26s)
+- lots of testing TP patchiest last week
+- is it time to merge TP patches
+- content to merge
+- tag before merge
+- David to work with Zack on tagging
+- for openlt agent it is thought that version 1.7 should be used
+- not all hardware has TP support yet.
+- Shawn to check with Girish about openlt compatibility with 2.x
 
 ### Actions
-- Matt(8/14): to push built images with TP patchiest to dockerhub
+- Khen,(David,): Matt will work to merge patchset today.
+- Zdw(will): tag before merge
 
-## Topic: stabilization branch (17m33s)
-- when are we ready cut branch and free master
-- issues or existing bugs will not prevent the stabilization branch creation
-- event patch is significant
-- event patch may not be complete
-- event patch at https://gerrit.opencord.org/#/c/14866/
-- and the cooresponding patch for the onu adapter:  https://gerrit.opencord.org/#/c/14865/
-- need to create JIRAs for the outstanding items around event patchsets
-- gating patchiest for branch are TP and event
-- 4 or 5 minor patches outstanding.
+## Topic: repo versioning (5m54s)
+- do version numbers stay in sync?
+- or does every component have their own life cycle?
+- versioning is done on a per-repo basis
+- helm charts unify version of multiple (different version) components
+- will move forward to have repos versioned independently
+- splitting up components in the voltha-go repo (rw_core, affinity router, etc.) into their own repos
+- Not sure how long this would take or the priority
+- splitting will be proposed after brigade
 
-### Decisions
-- event patchset will be added before branch, but test cases are required
-- will create 2.0.1 ag right before TP or events are merged
-- wed 8/14 at noon PDT is the minor patchset merge deadline
+### Actions
+- David(will): create JIRA to split repo
+
+## Topic: proposed stabilization roadmap (25m39s)
+- proposal includes some of the existing proposals of the brigade in terms of bug fix and cherry pick flows
+- the proposal includes date milestones on the process to help focus the effort
+- should get an inventory of improvements to date to help understand what work is left.
+- mechanics of versions/branches?  Process not defined quite yet.
+- changes applied to either/both branches on a per-patchset level
+- blue arrows are patchset fixes (cherry picked or reworked to the other branch)
+- testing framework and integration tests should be applied to both master and stabilization branch
+- code and process standards developed under the stabilization branch will also apply to master
+- stabilization brigade needs to define it goals a little more clearly
+- when the brigade has reached its goals the brigade goes away as does the branch
+- patchsets should be cherry picked from stabilization branch to master after they have been merged into the stabilization branch.
+- the plan is to propose processes and guidlelines for testing and commit standards. The plan is to create working groups (smaller than entire community) to develop and then socialize to community for comment and change.
+
+## Topic: outstanding issues before branch (10m40s)
+- TP and event model patchset needed before branch
+- need openonu testing to verify the event model patchset
+
+### Actions
+- Taskin(to): get the patch tested
+- Matt(will): get the patchset numbers to Taskin
+
+## Topic: Testing after the branch (4m51s)
+- we need more people with hardware to test, i.e. more people should purchase hardware
+- can we get an open hardware test bed?
+- carry over topic to next meeting
 
 # All Actions
-- Matt(8/14): to push built images with TP patchiest to dockerhub
+- Khen,(David,): Matt will work to merge patchset today.
+- Zdw(will): tag before merge
+- David(will): create JIRA to split repo
+- Taskin(to): get the patch tested
+- Matt(will): get the patchset numbers to Taskin
 
-# All Decisions
-- event patchset will be added before branch, but test cases are required
-- will create 2.0.1 ag right before TP or events are merged
-- wed 8/14 at noon PDT is the minor patchset merge deadline
-
-# Meeting ended at 2019-08-13 08:03:20 -0700 PDT
+# Meeting ended at 2019-08-20 07:59:39 -0700 PDT
