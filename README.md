@@ -1,4 +1,4 @@
-# Stabilization Meeting started on 2019-08-20 07:02:00 -0700 PDT
+# Stabilization Brigade started on 2019-08-27 07:02:00 -0700 PDT
 
 ## Attendance
 - Aishwarya Rana
@@ -6,84 +6,73 @@
 - Andy Bavier
 - Chip Boling
 - David Bainbridge
-- George Munteanu (Furukawa)
+- Divya(Infosys)
 - Gilles Depatie
+- Girish Kumar (Infosys)
+- Hardik Windlass (Infosys)
 - Julie Lorentzen
 - Kailash
 - Kent Hagerman
-- Khen
 - Kyryll Sheychenko
+- Mahir Gunyel(Netsia)
 - Marcelo
-- Matt Jeanneret
-- Open Networking Foundation
-- Saurav
 - Scott Baker
+- Vikas Arora
+- jRvHVEOVcURcqRA56CRzynJvVlNh2/EFP5yoQ15UBaU=
+- khenaidoo Nursimulu
+- rakesh
 - taskin_ucpinar
 - teone
 - zdw
 
-## Topic: Action item review (1m0s)
-- Matt posted docker images with TP patches for testing
+## Topic: Action Item Review (1m20s)
 
-## Topic: tech profile status (8m26s)
-- lots of testing TP patchiest last week
-- is it time to merge TP patches
-- content to merge
-- tag before merge
-- David to work with Zack on tagging
-- for openlt agent it is thought that version 1.7 should be used
-- not all hardware has TP support yet.
-- Shawn to check with Girish about openlt compatibility with 2.x
+## Topic: TP merge readout (1m41s)
+- went pretty well
+- thanks to Scott and Zack
+
+## Topic: Event Format Status (3m25s)
 
 ### Actions
-- Khen,(David,): Matt will work to merge patchset today.
-- Zdw(will): tag before merge
+- Amit(9/3): follow up with Paul Devmalya and Matt about new event definition patchiest. Amit will follow up with email.
 
-## Topic: repo versioning (5m54s)
-- do version numbers stay in sync?
-- or does every component have their own life cycle?
-- versioning is done on a per-repo basis
-- helm charts unify version of multiple (different version) components
-- will move forward to have repos versioned independently
-- splitting up components in the voltha-go repo (rw_core, affinity router, etc.) into their own repos
-- Not sure how long this would take or the priority
-- splitting will be proposed after brigade
+## Topic: Automated Testing (50m1s)
+- presentation from Suchitra
+- Automation Framework Proposal - https://docs.google.com/presentation/d/112xdckcM_a3OKs_ohfX9KZ3SwS3c6nkF2BlFrL0wW9c/edit
+- goal is to automate majority of tests and a single framework for both bbsim and physical pods
+- re-use/leverage work from SEBA
+- want capability to diagnose (debug) when test fail
+- Some hardware-based tests are hard to automate or require manual intervention (fiber pull) or special expensive hardware.
+- Use of robot framework allows modularity and reuse of tests, integrates well with Jenkins, already have libraries used with SEBA
+- developers will be able to run the tests locally via the Robot framework
+- Robot framework was compared to other tools, such as Ansible and Robot framework was determined to be easier by the team
+- Robot framework was used to test physical devices
+- automation is done via python and Robot when testing physical devices
+- deployment is done via Jenkins as a series of Helm charts
+- tests are being run both on bbsim and physical PODs
+- Ansible does not offer robust output as Robot as its focus is not testing
+- there is a plan / roadmap for performance testing
+- Voltha library uses voltha cli (ssh) to communicate to voltha
+- the test sequence is based on the AT&T workflow today
+- we may/should be including other workflows as well.
+- the libraries have the capability to be used independent of the workflow
+- The Robot framework library will wrap whatever interface (local CLI, remote CLI, REST, etc.) the component under test uses, so changing interfaces could be done at the library level.
+- it is expected that all members of the brigade / community will contribute to testing scenarios
+- documents exist that describe how to contribute to test cases
+- voltha-system-tests repo: https://gerrit.opencord.org/gitweb?p=voltha-system-tests.git;a=tree
+- please review the documentation about how to contribute to tests and if items that are desired are not covered we can update the documents with more details.
+- testing docs: https://guide.opencord.org/cord-tester/
+- The testing topology should be documented as part of the test setup
+- physical lab setup guide: https://guide.opencord.org/profiles/seba/lab-setup.html
+- there are deployment configuration files for each test from which topology can be implied
+- Patchset verification builds a specific patchset
+- Nightly test checks what have already been checked in.
 
 ### Actions
-- David(will): create JIRA to split repo
-
-## Topic: proposed stabilization roadmap (25m39s)
-- proposal includes some of the existing proposals of the brigade in terms of bug fix and cherry pick flows
-- the proposal includes date milestones on the process to help focus the effort
-- should get an inventory of improvements to date to help understand what work is left.
-- mechanics of versions/branches?  Process not defined quite yet.
-- changes applied to either/both branches on a per-patchset level
-- blue arrows are patchset fixes (cherry picked or reworked to the other branch)
-- testing framework and integration tests should be applied to both master and stabilization branch
-- code and process standards developed under the stabilization branch will also apply to master
-- stabilization brigade needs to define it goals a little more clearly
-- when the brigade has reached its goals the brigade goes away as does the branch
-- patchsets should be cherry picked from stabilization branch to master after they have been merged into the stabilization branch.
-- the plan is to propose processes and guidlelines for testing and commit standards. The plan is to create working groups (smaller than entire community) to develop and then socialize to community for comment and change.
-
-## Topic: outstanding issues before branch (10m40s)
-- TP and event model patchset needed before branch
-- need openonu testing to verify the event model patchset
-
-### Actions
-- Taskin(to): get the patch tested
-- Matt(will): get the patchset numbers to Taskin
-
-## Topic: Testing after the branch (4m51s)
-- we need more people with hardware to test, i.e. more people should purchase hardware
-- can we get an open hardware test bed?
-- carry over topic to next meeting
+- Everyone(9/3): Review documentation that explains how tests are set up, how to integrate new tests, and how they'll be run.
 
 # All Actions
-- Khen,(David,): Matt will work to merge patchset today.
-- Zdw(will): tag before merge
-- David(will): create JIRA to split repo
-- Taskin(to): get the patch tested
-- Matt(will): get the patchset numbers to Taskin
+- Amit(9/3): follow up with Paul Devmalya and Matt about new event definition patchiest. Amit will follow up with email.
+- Everyone(9/3): Review documentation that explains how tests are set up, how to integrate new tests, and how they'll be run.
 
-# Meeting ended at 2019-08-20 07:59:39 -0700 PDT
+# Meeting ended at 2019-08-27 07:59:09 -0700 PDT
