@@ -1,43 +1,31 @@
-# Stabilization Brigade Meeting started on 2019-11-12 07:02:00 -0800 PST
+# Stabilization Brigade Meeting started on 2019-11-19 07:02:00 -0800 PST
 
 ## Attendance
-- Aishwarya Rana
+- Amit
+- Andy Bavier
 - Chip Boling
+- Chris Busch
 - David Bainbridge
-- George Munteanu
-- Gilles Depatie
 - Girish Kumar
+- HARDIK WINDLASS (Infosys)
 - Kent Hagerman
-- Larry Ho
-- Matt Jeanneret
 - Scott Baker
-- Serkant Uluderya (netsia)
 - knursimu
-- zdw
+- taskin_ucpinar
 
-## Topic: Unit Test Coverage (2m39s)
-- @khen submitted two mocks in Voltha-lib: a Kafka mock and and embedded etcd
-- these mocks can help flesh out unit tests for core
-- @khen has some unit tests in the core that can be instructional on how to use them.
+## Topic: Unit Test Coverage (13m20s)
+- good bump on lab-go, other not so much
+- unit tests need to verify function behavior
+- can gerrit check and report or -1 when coverage goes lower on code commit
+- using interfaces in the code over structs and bound functions helps with unit testing because it allows the definition of mocks.
+- as we define interfaces we need to make sure that we check that structs continue to implement the interfaces.
+- need to think about restructuring voltha-go repo
 
-## Topic: JIRA Update (50s)
+## Topic: JIRA Update (8m27s)
+- unresolved JIRAs and patchiest counts are related
+- please take time to review patchsets
+- as repos can pass the SCA tests we can add an sca Makefile target to the lint dependencies.
+- need a default sca configuration as to what is required to pass
+- python 3 conversion is going well
 
-## Topic: Patchsets (2m7s)
-- we need more focus on code review
-
-## Topic: Attention Items (1m40s)
-
-## Topic: VOL-2173 - may be a BCM bug waiting for response (13m11s)
-- VOL-1977 works usually twice, fails on third time. Working working @teo
-- VOL-1977 may be related to VOL-2201
-- VOL-2223 - introduced on a commit Friday. There is a flow that is not pushed when custom profiles. Issue has been identified, should be a fix today or tomorrow. If not fixed today then current patch will be reverted around 1/2 p EST.
-- VOL-2180 - will be discussed on VOLTHA community meeting
-- VOL-1942 - ongoing issue. This is a known bug and being worked on the performance brigade.
-- VOL-2201 - triage seems to indicate the openly adapter crashed
-- VOL-2202 - @matt cannot reproduce on hardware
-- waiting for response from assignee to understand test scenario better.
-- VOL-1802 - waiting for feedback to see if @teo has verified the issue
-- VOL-1914 - @dbainbri to verify
-- VOL-2199 - @smbaker working to reproduce it today.
-
-# Meeting ended at 2019-11-12 07:23:04 -0800 PST
+# Meeting ended at 2019-11-19 07:25:03 -0800 PST
