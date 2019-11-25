@@ -1,39 +1,43 @@
-# Stabilization Brigade Meeting started on 2019-10-15 07:02:00 -0700 PDT
+# Stabilization Brigade Meeting started on 2019-11-12 07:02:00 -0800 PST
 
 ## Attendance
 - Aishwarya Rana
-- Andy Bavier
 - Chip Boling
 - David Bainbridge
+- George Munteanu
 - Gilles Depatie
-- Hardik Windlass (Infosys)
-- Julie Lorentzen
+- Girish Kumar
 - Kent Hagerman
+- Larry Ho
 - Matt Jeanneret
-- Matteo Scandolo
-- Mike Gasser (AT&T)
 - Scott Baker
-- Serkant Uluderya
-- Zdravko Bozakov
-- dineshbelwalkar
+- Serkant Uluderya (netsia)
 - knursimu
+- zdw
 
-## Topic: Branching Change (2m25s)
-- we are no longer going to be cherry-picking to Voltha 2.1 and development will continue on master
-- may branch laters if required.
+## Topic: Unit Test Coverage (2m39s)
+- @khen submitted two mocks in Voltha-lib: a Kafka mock and and embedded etcd
+- these mocks can help flesh out unit tests for core
+- @khen has some unit tests in the core that can be instructional on how to use them.
 
-## Topic: Repository Disaggregation (2m48s)
-- Voltha-go has disaggregated into multiple respositories
-- this means we are moving to a one repository to container type model
-- plan is to move most of voltha-go common to a library repository
-- the library move may be a little disruptive as it is done in sort of a rolling update.
+## Topic: JIRA Update (50s)
 
-## Topic: From dep to mod (2m14s)
-- voltha-go (I think) is last repo to move to mod
-- need to make sure that any build documentation is updated
+## Topic: Patchsets (2m7s)
+- we need more focus on code review
 
-## Topic: Dashboard Review (5m42s)
-- need more unit tests, below 80% target on most packages
-- about 57 issues open and not in progress
+## Topic: Attention Items (1m40s)
 
-# Meeting ended at 2019-10-15 07:17:41 -0700 PDT
+## Topic: VOL-2173 - may be a BCM bug waiting for response (13m11s)
+- VOL-1977 works usually twice, fails on third time. Working working @teo
+- VOL-1977 may be related to VOL-2201
+- VOL-2223 - introduced on a commit Friday. There is a flow that is not pushed when custom profiles. Issue has been identified, should be a fix today or tomorrow. If not fixed today then current patch will be reverted around 1/2 p EST.
+- VOL-2180 - will be discussed on VOLTHA community meeting
+- VOL-1942 - ongoing issue. This is a known bug and being worked on the performance brigade.
+- VOL-2201 - triage seems to indicate the openly adapter crashed
+- VOL-2202 - @matt cannot reproduce on hardware
+- waiting for response from assignee to understand test scenario better.
+- VOL-1802 - waiting for feedback to see if @teo has verified the issue
+- VOL-1914 - @dbainbri to verify
+- VOL-2199 - @smbaker working to reproduce it today.
+
+# Meeting ended at 2019-11-12 07:23:04 -0800 PST
