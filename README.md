@@ -12,7 +12,7 @@
 - Zack Williams
 - knursimu
 - taskin\_ucpinar
-- HARDIK WINDLASS (Infosys)
+- Vignesh Ethiraj (Infosys Ltd)
 
 ## Topic: unit test coverage (52s)
 - not much change
