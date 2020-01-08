@@ -1,31 +1,38 @@
-# Stabilization Brigade Meeting started on 2019-11-19 07:02:00 -0800 PST
+# Stabilization Brigade Meeting started on 2020-01-07 07:02:00 -0800 PST
 
 ## Attendance
-- Amit
 - Andy Bavier
-- Chip Boling
-- Chris Busch
+- Chaitrashree G S
 - David Bainbridge
-- Girish Kumar
 - HARDIK WINDLASS (Infosys)
 - Kent Hagerman
 - Scott Baker
+- Serkant Uluderya
+- Vignesh Ethiraj (Infosys Ltd)
+- Zack Williams
 - knursimu
-- taskin_ucpinar
+- taskin\_ucpinar
+- HARDIK WINDLASS (Infosys)
 
-## Topic: Unit Test Coverage (13m20s)
-- good bump on lab-go, other not so much
-- unit tests need to verify function behavior
-- can gerrit check and report or -1 when coverage goes lower on code commit
-- using interfaces in the code over structs and bound functions helps with unit testing because it allows the definition of mocks.
-- as we define interfaces we need to make sure that we check that structs continue to implement the interfaces.
-- need to think about restructuring voltha-go repo
+## Topic: unit test coverage (52s)
+- not much change
 
-## Topic: JIRA Update (8m27s)
-- unresolved JIRAs and patchiest counts are related
-- please take time to review patchsets
-- as repos can pass the SCA tests we can add an sca Makefile target to the lint dependencies.
-- need a default sca configuration as to what is required to pass
-- python 3 conversion is going well
+## Topic: jira and patch set (1m49s)
+- need to reduce the patch set back log
 
-# Meeting ended at 2019-11-19 07:25:03 -0800 PST
+## Topic: freezing tool version (41m46s)
+- different tool version can cause different build differences.
+- do we need to have a bundle of tools (based on version) and then repo use a specific set / bundle
+- the auto build checks to see if the checked in code generated from the protobufs is by regenerating code and then comparing to checked in code. However if the developer is using a different version of the generator then this check can be a failed positive.
+- how does a developer verify they have the correct version of the tools
+- This should be a check/verify of tool versions, but not an automatic install of tooling, as there are platform/dev environment differences.
+- a standard tool set can be accomplished with either Vagrant VMs or Docker builds
+- a developers local file system can be mounted into a docker container
+- a docker build may extend the build cycle time in certain situations
+- Kent will attempt a docker build for the protos repo
+- Need a BOM of versions in any case, created during release engineering process.
+- Discussion of how to apply this BOM across multiple code repos.
+- we will have a BOM repo at some point in the future that will be enforced via an implementation mechanism
+- related Jira: https://jira.opencord.org/browse/VOL-2298
+
+# Meeting ended at 2020-01-07 07:54:51 -0800 PST
